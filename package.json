@@ -1,0 +1,20 @@
+{
+  "name": "spotted",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./main.js",
+  "author": "olnaz",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:olnaz/spotty.git"
+  },
+  "keywords": [
+    "vk",
+    "vkontakte",
+    "vk-api"
+  ],
+  "dependencies": {
+    "node-fetch": "^1.7.1",
+    "uws": "^0.14.5"
+  }
+}
