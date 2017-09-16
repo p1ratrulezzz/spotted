@@ -1,4 +1,4 @@
-## spotty
+# spotty
 
 Сервер для ВКонтакте Callback API.
 
