@@ -29,7 +29,7 @@ npm i spotted
 >   <summary>ctx.<b>upload</b>(type: <i>String</i>, file: <i>Buffer/Stream</i>, params: <i>Object</i>)</summary>
 > 
 >   Позволяет загружать изображения / документы во ВКонтакте от имени сообщества.  
->   <sub>[L50, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L84)</sub>
+>   <sub>[L84, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L84)</sub>
 > </details>
 
 > <details>
