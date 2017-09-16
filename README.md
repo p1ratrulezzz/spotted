@@ -14,25 +14,22 @@ npm i spotted
 > <details>
 >   <summary>ctx.<b>call</b>(method: <i>String</i>, params: <i>Object</i>)</summary>
 > 
->   Вызывает методы API ВКонтакте.
-> 
->   [L21, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L21)
+>   Вызывает методы API ВКонтакте.  
+>   <sub>[L21, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L21)</sub>
 > </details>
 
 > <details>
 >   <summary>ctx.<b>reply</b>(text: <i>String</i>, attachments: <i>String/Array</i>, forwards: <i>String/Array</i>)</summary>
 > 
->   Позволяет быстро отвечать на входящие сообщения.
-> 
->   [L50, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L50)
+>   Позволяет быстро отвечать на входящие сообщения.  
+>   <sub>[L50, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L50)</sub>
 > </details>
 
 > <details>
 >   <summary>ctx.<b>upload</b>(type: <i>String</i>, file: <i>Buffer/Stream</i>, params: <i>Object</i>)</summary>
 > 
->   Позволяет загружать изображения / документы во ВКонтакте от имени сообщества..
-> 
->   [L50, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L84)
+>   Позволяет загружать изображения / документы во ВКонтакте от имени сообщества.  
+>   <sub>[L50, APIClient.js](https://github.com/olnaz/spotty/blob/master/lib/APIClient.js#L84)</sub>
 > </details>
 
 > <details>
@@ -48,7 +45,7 @@ npm i spotted
 >   | id               | Number    | yes       |
 >   | secretKey        | String    | yes       |
 > 
->   [L43, Application.js](https://github.com/olnaz/spotty/blob/master/lib/Application.js#L43)
+>   <sub>[L43, Application.js](https://github.com/olnaz/spotty/blob/master/lib/Application.js#L43)</sub>
 > </details>
 
 > <details>
@@ -61,5 +58,5 @@ npm i spotted
 >   |----------|---------|----------:|--------:|
 >   | port     | Number  | no        | 8080    |
 > 
->   [L58, Application.js](https://github.com/olnaz/spotty/blob/master/lib/Application.js#L58)
+>   <sub>[L58, Application.js](https://github.com/olnaz/spotty/blob/master/lib/Application.js#L58)</sub>
 > </details>
