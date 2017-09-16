@@ -1,4 +1,11 @@
-# spotty
+## spotty
 
-Server for VK Callback API.  
-Not completed & not tested.
+Сервер для ВКонтакте Callback API.
+
+#### Установка
+```sh
+npm i spotted
+```
+
+#### Использование
+Примеры использования находятся в папке **examples**.
