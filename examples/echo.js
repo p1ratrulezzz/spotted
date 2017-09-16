@@ -2,16 +2,17 @@
 
 const spotty = require('../main');
 
-spotty.on('message_new', request => {
-  console.log(`[Group id${request.group_id}] New message from user id${request.object.user_id} received:`, request.object.body);
-
-  request.sendMessage('Re: ' + request.object.body);
+spotty.addCommunity({
+  accessToken: '',
+  confirmationCode: '',
+  id: 123456789,
+  secretKey: ''
 });
 
-spotty.run({
-  tokens: [
-    [123456, 'community_access_token']
-  ], 
+spotty.on('message_new', ctx => {
+  console.log(`[Group id${ctx.group_id}] New message from user id${ctx.object.user_id} received:`, ctx.object.body);
 
-  port: 9001
+  ctx.reply('Re: ' + ctx.object.body);
 });
+
+spotty.run();
