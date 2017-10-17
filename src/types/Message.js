@@ -18,47 +18,94 @@ class Message {
     Object.assign(this, message);
   }
 
-  isAudioMessage () {
+  /**
+   * Является ли сообщение аудиозаписью?
+   * @return {Boolean}
+   * @public
+   * 
+   * https://vk.com/dev/objects/attachments_m
+   */
+  isAudio () {
     return this.attachments && 
-           this.attachments[0].type === 'doc' && 
-           this.attachments[0].doc.preview && 
-           this.attachments[0].doc.preview.audio_msg;
+           this.attachments[0].type === 'audio';
   }
 
+  /**
+   * Является ли сообщение аудио-сообщением?
+   * @return {Boolean}
+   * @public
+   * 
+   * https://vk.com/dev/objects/doc
+   */
+  isAudioMessage () {
+    return !!(
+      this.attachments && 
+      this.attachments[0].type === 'doc' && 
+      this.attachments[0].doc.preview && 
+      this.attachments[0].doc.preview.audio_msg
+    );
+  }
+
+  /**
+   * Является ли сообщение граффити?
+   * @return {Boolean}
+   * @public
+   * 
+   * https://vk.com/dev/objects/doc
+   */
   isGraffiti () {
-
+    return !!(
+      this.attachments && 
+      this.attachments[0].type === 'doc' && 
+      this.attachments[0].doc.preview && 
+      this.attachments[0].doc.preview.graffiti
+    );
   }
 
+  /**
+   * Является ли сообщение фотографией?
+   * @return {Boolean}
+   * @public
+   * 
+   * https://vk.com/dev/objects/attachments_m
+   */
+  isPhoto () {
+    return this.attachments && 
+           this.attachments[0].type === 'photo';
+  }
+
+  /**
+   * Является ли сообщение стикером?
+   * @return {Boolean}
+   * @public
+   * 
+   * https://vk.com/dev/objects/attachments_m
+   */
   isSticker () {
     return this.attachments && 
            this.attachments[0].type === 'sticker';
   }
 
-  hasAudio () {
 
-  }
-
-  hasPhoto () {
-
-  }
-
-  hasText () {
-
-  }
-
-  hasVideo () {
-
+  /**
+   * Является ли сообщение обычным текстом?
+   * @return {Boolean}
+   * @public
+   * 
+   * https://vk.com/dev/objects/attachments_m
+   */
+  isText () {
+    return this.body && 
+           !this.attachments && 
+           !this.fwd_messages &&
+           !this.geo;
   }
 
   /**
-   * Позволяет быстро ответить на сообщение.
+   * Позволяет быстро отправить сообщение в текущий диалог.
    * @param  {String/Object} answer Сообщение-ответ
    * @return {Promise}
    * @public
-   *
-   * Позволяет быстро отправить личное сообщение пользователю от имени сообщества.
-   * 
-   * https://vk.com/dev/messages.send
    */
   reply (answer) {
     if (!answer) {
@@ -71,26 +118,33 @@ class Message {
       }
     }
   
-    return this.client.call('messages.send', Object.assign({}, answer, { user_id: this.user_id }));
+    return this.send(Object.assign({}, answer, { user_id: this.user_id }));
   }
 
-  send () {
-
-  }
-
-  sendSticker () {
-
+  /**
+   * Отправляет сообщение.
+   * @param  {Object}  [params={}] Параметры запроса
+   * @return {Promise}
+   * @public
+   * 
+   * https://vk.com/dev/messages.send
+   */
+  send (params = {}) {
+    return this.client.call('messages.send', params);
   }
 
   /**
    * Изменяет статус набора текста сообществом в диалоге.
+   * @param  {Number}  [userId=this.user_id] ID пользователя (== ID диалога)
    * @return {Promise}
    * @public
+   * 
+   * https://vk.com/dev/messages.setActivity
    */
-  setTyping () {
+  setTyping (userId = this.user_id) {
     return this.client.call('messages.setActivity', {
       type:    'typing',
-      user_id: this.user_id
+      user_id: userId
     });
   }
 }
