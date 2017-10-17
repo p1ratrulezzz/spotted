@@ -2,17 +2,16 @@
 
 const spotty = require('../main');
 
-spotty.addCommunity({
+spotty.setCommunity({
   accessToken:      'aswewoqpfsqwepofdsf', // <String> VK Community Access Token
   confirmationCode: 'asdjfdg',             // <String> VK Community Confirmation Code
-  id:               12345678,              // <Number> VK Community ID
   secretKey:        'secretAJSDIFfsd'      // <String> VK Community Secret Key
 });
 
-spotty.on('message_new', ctx => {
-  console.log(`[Group id${ctx.group_id}] A new message from user id${ctx.object.user_id} received:`, ctx.object.body);
+spotty.on('message_new', message => {
+  console.log(`A new message from user id${message.user_id} received:`, message.body);
 
-  ctx.reply('Re: ' + ctx.object.body);
+  ctx.reply('Re: ' + message.body);
 });
 
 spotty.run();
