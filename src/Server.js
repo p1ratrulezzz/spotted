@@ -17,7 +17,7 @@ let _server              = null;
 /**
  * Закрывает соединение.
  * @param   {uws.Response} response
- * @param   {String}       text     Строка ответа
+ * @param   {String}       [text='ok'] Строка ответа
  * @return  {void}
  * @private
  */
@@ -45,6 +45,7 @@ function internalRequestHandler (request, response) {
   }
 
   /**
+   * Chunks.
    * @type {Array of Buffer}
    */
   let chunks = [];
@@ -55,7 +56,6 @@ function internalRequestHandler (request, response) {
       const body = JSON.parse(Buffer.concat(chunks).toString());
 
       if (body.type === 'confirmation') {
-        // Подтверждение адреса сервера.
         _confirmationHandler(body.group_id, code => endRequest(response, code));
       } else {
         endRequest(response);
@@ -71,8 +71,8 @@ function internalRequestHandler (request, response) {
 
 /**
  * Создаёт сервер для обработки входящих запросов.
- * @param  {Function} requestHandler      Обработчик запросов
- * @param  {Function} confirmationHandler Обработчик подтверждений
+ * @param  {Function} requestHandler      Обработчик запросов от ВКонтакте
+ * @param  {Function} confirmationHandler Обработчик подтверждений адреса сервера
  * @return {Server}
  * @public
  */
