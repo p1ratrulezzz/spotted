@@ -14,8 +14,8 @@ const MAX_ATTEMPTS = 3;
 
 /**
  * "node-fetch" with auto-retry.
- * @param  {String}  url          URL
- * @param  {Object}  options      Options
+ * @param  {String}  [url='']     URL
+ * @param  {Object}  [options={}] Options
  * @param  {Number}  [_attempt=1] Attempt number
  * @return {Promise}
  * @public
