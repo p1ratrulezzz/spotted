@@ -19,6 +19,26 @@ class Message {
   }
 
   /**
+   * Удаляет сообщение.
+   * @param  {Number/Object} [params=this.id] Параметры запроса (либо ID сообщения)
+   * @return {Promise}
+   * @public
+   * 
+   * По умолчанию, вызов функции приведет к удалению текущего сообщения.
+   * 
+   * https://vk.com/dev/messages.delete
+   */
+  delete (params = this.id) {
+    if (typeof params === 'number') {
+      params = {
+        message_ids: params
+      }
+    }
+
+    return this.client.call('messages.delete', params);
+  }
+
+  /**
    * Является ли сообщение аудиозаписью?
    * @return {Boolean}
    * @public
@@ -119,6 +139,18 @@ class Message {
     }
   
     return this.send(Object.assign({}, answer, { user_id: this.user_id }));
+  }
+
+  /**
+   * Восстанавливает сообщение.
+   * @param  {Number}  [messageId=this.id] ID сообщения
+   * @return {Promise}
+   * @public
+   * 
+   * https://vk.com/dev/messages.restore
+   */
+  restore (messageId = this.id) {
+    return this.client.call('messages.restore', { message_id: messageId });
   }
 
   /**
