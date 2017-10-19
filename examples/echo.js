@@ -11,7 +11,7 @@ spotty.setCommunity({
 spotty.on('message_new', message => {
   console.log(`A new message from user id${message.user_id} received:`, message.body);
 
-  ctx.reply('Re: ' + message.body);
+  message.reply('Re: ' + message.body);
 });
 
 spotty.run();
