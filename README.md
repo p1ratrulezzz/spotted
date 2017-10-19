@@ -101,14 +101,14 @@ $ npm install spotted
 
 Для событий `message_new` и `message_reply` возвращается экземпляр класса [`Message`](src/types/Message.js), который имеет расширенный список методов.
 
-#### message.delete()
-#### message.isAudio()
-#### message.isAudioMessage()
-#### message.isGraffiti()
-#### message.isPhoto()
-#### message.isSticker()
-#### message.isText()
-#### message.reply(answer)
+### message.delete()
+### message.isAudio()
+### message.isAudioMessage()
+### message.isGraffiti()
+### message.isPhoto()
+### message.isSticker()
+### message.isText()
+### message.reply(answer)
 * `answer<String/Object>` Сообщение-ответ
 * Returns `Promise<Any>`
 
@@ -116,12 +116,12 @@ $ npm install spotted
 
 `answer` может быть как строкой-ответом, так и объектом, содержащим параметры для метода [`messages.send`](https://vk.com/dev/messages.send).
 
-#### message.restore()
-#### message.send()
-#### message.setTyping([userId])
+### message.restore()
+### message.send()
+### message.setTyping([userId])
 * `userId<Number>` ID пользователя (= ID диалога)
 * Returns `Promise<Any>`
 
 Изменяет статус набора текста сообществом в диалоге.
 
-**userId** по умолчанию равен ID пользователя текущего сообщения.
+`userId` по умолчанию равен ID пользователя текущего сообщения.
