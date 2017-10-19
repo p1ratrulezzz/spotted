@@ -1,6 +1,6 @@
 {
   "name": "spotted",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Library for creating Vkontakte bots with ease.",
   "main": "./src/main.js",
   "author": "olnaz",
