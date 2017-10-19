@@ -25,11 +25,16 @@ const API_BASE_URL = 'https://api.vk.com/method/';
  * @private
  */
 function executeMethodsFromQueue (client) {
+  // Методов в очереди нет.
+  if (!client._callbackNames.length) {
+   return;
+  }
+
   /**
-   * Код, который будет вызван через метод "execute".
-   * @type {String}
+   * Методы, которые будут вызваны.
+   * @type {Array of String}
    */
-  const executeCode = 'return [' + client._methods.splice(0, 25).join(',') + '];';
+  let methodsToExecute = client._methods.splice(0, 25);
 
   /**
    * Названия коллбэков для вызываемых методов.
@@ -38,7 +43,15 @@ function executeMethodsFromQueue (client) {
    * Используются для резолвинга промисов в случае 
    * сетевых ошибок / ошибок вызова метода "execute".
    */
-  const callbackNamesForTheseMethods = client._callbackNames.splice(0, 25);
+  let callbackNamesForTheseMethods = client._callbackNames.splice(0, 25);
+
+  /**
+   * Код, который будет вызван через метод "execute".
+   * @type {String}
+   */
+  let executeCode = 'return [' + methodsToExecute.join(',') + '];';
+
+  methodsToExecute = null;
 
   client.callDirect('execute', { code: executeCode })
     .then(response => {
@@ -52,6 +65,8 @@ function executeMethodsFromQueue (client) {
 
         client._callbacks[callbackName] = undefined;
       }
+
+      callbackNamesForTheseMethods = null;
     })
     .catch(error => {
       for (const callbackName of callbackNamesForTheseMethods) {
@@ -59,7 +74,11 @@ function executeMethodsFromQueue (client) {
 
         client._callbacks[callbackName] = undefined;
       }
+
+      callbackNamesForTheseMethods = null;
     });
+
+  executeCode = null;
 }
 
 /**
@@ -120,8 +139,8 @@ class Client {
      */
     this._callbacks = Object.create(null);
 
-    // Запускаем вызов методов из очереди каждые ~75мс.
-    setInterval(() => executeMethodsFromQueue(this), 75);
+    // Запускаем вызов методов из очереди каждые ~150мс.
+    setInterval(() => executeMethodsFromQueue(this), 150);
   }
 
   /**
