@@ -26,7 +26,7 @@ $ npm install spotted
 Запускает сервер для обработки входящих запросов.
 
 #### Options
-Свойства объекта *options* и их значения по умолчанию.
+Свойства объекта `options` и их значения по умолчанию.
 
 ```javascript
 {
@@ -41,7 +41,7 @@ $ npm install spotted
 Устанавливает данные сообщества.
 
 #### Community
-Свойства объекта *community*.
+Свойства объекта `community`.
 
 ```javascript
 {
@@ -53,7 +53,7 @@ $ npm install spotted
 
 ### [`Client`](src/Client.js)
 
-При установке данных сообщества ([app.setCommunity()](#appsetcommunitycommunity)) экземпляр `Client` создаётся автоматически, а после хранится в переменной `app.client`.
+При установке данных сообщества ([app.setCommunity](#appsetcommunitycommunity)) экземпляр `Client` создаётся автоматически, а после хранится в переменной `app.client`.
 
 ### client.call(method[, params])
 * `method<String>` Название метода
@@ -69,7 +69,7 @@ $ npm install spotted
 * `params<Object>` Параметры метода
 * Returns `Promise<Any>`
 
-В отличие от [`client.call()`](#clientcallmethod-params) вызывает методы в обход очереди.
+В отличие от [`client.call`](#clientcallmethod-params) вызывает методы в обход очереди.
 
 ### client.upload(type, file[, params[, afterUploadParams]])
 * `type<String>` [Тип загрузки](#Типы-загрузок)
@@ -114,7 +114,7 @@ $ npm install spotted
 
 Позволяет быстро отправить ответ на сообщение в текущий диалог.
 
-**answer** может быть как строкой-ответом, так и объектом, содержащим параметры для метода [`messages.send`](https://vk.com/dev/messages.send).
+`answer` может быть как строкой-ответом, так и объектом, содержащим параметры для метода [`messages.send`](https://vk.com/dev/messages.send).
 
 #### message.restore()
 #### message.send()
