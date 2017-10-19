@@ -1,4 +1,4 @@
-# spotted &middot; [![npm](https://img.shields.io/npm/v/spotted.svg)]() [![npm](https://img.shields.io/npm/dt/spotted.svg)]()
+# spotted &middot; [![npm](https://img.shields.io/npm/v/spotted.svg)](http://npmjs.org/spotted) [![npm](https://img.shields.io/npm/dt/spotted.svg)](http://npmjs.org/spotted)
 
 ```bash
 $ npm install spotted
