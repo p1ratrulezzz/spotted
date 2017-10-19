@@ -158,7 +158,7 @@ class Client {
    * https://github.com/olnaz/node-vkapi/blob/master/src/vkapi.js#L185
    */
   callDirect (method = '', params = {}) {
-    params.v            = params.v            || VK_API_VERSION;
+    params.v            = params.v            || API_VERSION;
     params.access_token = params.access_token || this.accessToken;
 
     return fetch(API_BASE_URL + method, {
