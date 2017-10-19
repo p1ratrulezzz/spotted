@@ -82,14 +82,12 @@ class Application extends EventEmitter {
   /**
    * Устанавливает данные обрабатываемого сообщества.
    * @param  {Object} [community={}] Данные сообщества
-   * @return {this}
+   * @return {void}
    * @public
    */
   setCommunity (community = {}) {
     this.client    = new Client(community.accessToken);
     this.community = community;
-
-    return this;
   }
 }
 
