@@ -53,7 +53,7 @@ $ npm install spotted
 
 ### [`Client`](src/Client.js)
 
-При установке данных сообщества ([app.setCommunity](#appsetcommunitycommunity)) экземпляр `Client` создаётся автоматически, а после хранится в переменной `app.client`.
+При установке данных сообщества ([app.setCommunity](#appsetcommunitycommunity)) экземпляр `Client` создаётся автоматически, а после хранится в переменной `app.client`. 
 
 ### client.call(method[, params])
 * `method<String>` Название метода
@@ -101,13 +101,44 @@ $ npm install spotted
 
 Для событий `message_new` и `message_reply` возвращается экземпляр класса [`Message`](src/types/Message.js), который имеет расширенный список методов.
 
-### message.delete()
+### message.delete([params])
+* `params<Number/Object>` Параметры запроса. *По умолчанию равен ID текущего сообщения*
+* Returns `Promise<Any>`
+
+Позволяет быстро удалить сообщение.
+
+`params` может быть как ID сообщения, которое нужно удалить, так и объектом, содержащим параметры для метода [`messages.delete`](https://vk.com/dev/messages.delete). 
+
 ### message.isAudio()
+* Returns `Boolean`
+
+Вернёт `true`, если первое прикрепление к сообщению является аудиозаписью.
+
 ### message.isAudioMessage()
+* Returns `Boolean`
+
+Вернёт `true`, если было получено аудио-сообщение.
+
 ### message.isGraffiti()
+* Returns `Boolean`
+
+Вернёт `true`, если было получено сообщение с граффити.
+
 ### message.isPhoto()
+* Returns `Boolean`
+
+Вернёт `true`, если первое прикрепление к сообщению является фотографией.
+
 ### message.isSticker()
+* Returns `Boolean`
+
+Вернёт `true`, если был получен стикер.
+
 ### message.isText()
+* Returns `Boolean`
+
+Вернёт `true`, если было получено сообщение без прикреплений.
+
 ### message.reply(answer)
 * `answer<String/Object>` Сообщение-ответ
 * Returns `Promise<Any>`
@@ -116,12 +147,20 @@ $ npm install spotted
 
 `answer` может быть как строкой-ответом, так и объектом, содержащим параметры для метода [`messages.send`](https://vk.com/dev/messages.send).
 
-### message.restore()
-### message.send()
+### message.restore([messageId])
+* `messageId<Number>` ID сообщения. *По умолчанию ID текущего сообщения*
+* Returns `Promise<Any>`
+
+Восстанавливает сообщение по его ID.
+
+### message.send(params)
+* `params<Object>` Параметры для метода [`messages.send`](https://vk.com/dev/messages.send)
+* Returns `Promise<Any>`
+
+Отправляет сообщение.
+
 ### message.setTyping([userId])
-* `userId<Number>` ID пользователя (= ID диалога)
+* `userId<Number>` ID пользователя (= ID диалога). *По умолчанию ID автора текущего сообщения*
 * Returns `Promise<Any>`
 
 Изменяет статус набора текста сообществом в диалоге.
-
-`userId` по умолчанию равен ID пользователя текущего сообщения.
