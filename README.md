@@ -147,6 +147,16 @@ $ npm install spotted
 
 `answer` может быть как строкой-ответом, так и объектом, содержащим параметры для метода [`messages.send`](https://vk.com/dev/messages.send).
 
+### message.replyWithPhoto(photo)
+* `photo<String/Stream/Object>` Фотография
+* Returns `Promise<Any>`
+
+Позволяет быстро отправить фотографию в текущий диалог.
+
+`photo` принимается в таком же формате, как и второй аргумент (`file`) для метода [`client.upload`](https://github.com/olnaz/spotted#clientuploadtype-file-params-afteruploadparams).
+
+Однако, можно просто передать URL фотографии, которую нужно загрузить, и всё будет работать.
+
 ### message.restore([messageId])
 * `messageId<Number>` ID сообщения. *По умолчанию ID текущего сообщения*
 * Returns `Promise<Any>`
