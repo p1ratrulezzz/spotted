@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Module dependencies.
+ * @private
+ */
+const fetch = require('../lib/fetch');
+
 class Message {
   /**
    * Constructor.
@@ -139,6 +145,33 @@ class Message {
     }
   
     return this.send(Object.assign({}, answer, { user_id: this.user_id }));
+  }
+
+  /**
+   * Позволяет быстро ответить фотографией в текущем диалоге.
+   * @param  {String/Stream/Object} photo Фотография
+   * @return {Promise}
+   * @public
+   * 
+   * Аргумент "photo" принимается в таких же форматах, как и для метода client.upload().
+   * Подробнее: https://github.com/olnaz/spotted#clientuploadtype-file-params-afteruploadparams
+   * 
+   * Однако, только в данном методе можно передать URL фотографии, которую нужно загрузить.
+   */
+  replyWithPhoto (photo) {
+    let photoPromise;
+
+    if (typeof photo === 'string') {
+      photoPromise = fetch(photo)
+                       .then(image => image.buffer())
+                       .then(buffer => ({ content: buffer, name: 'image.jpg' }));
+    } else {
+      photoPromise = Promise.resolve(photo);
+    }
+
+    return photoPromise
+      .then(arg => this.client.upload('photo', arg, { peer_id: this.user_id }))
+      .then(response => this.reply({ attachment: `photo${response[0].owner_id}_${response[0].id}` }));
   }
 
   /**
